@@ -1,0 +1,276 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>webpack-1-编译代码-common.js | Gridea</title>
+<link rel="shortcut icon" href="https://paperp1ane.GitHub.io/favicon.ico?v=1616174118850">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://paperp1ane.GitHub.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="webpack-1-编译代码-common.js | Gridea - Atom Feed" href="https://paperp1ane.GitHub.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1.创建webpack demo，具体步骤不阐述
+2.在根目录建立src文件夹
+我们创建了两个文件
+index.js
+    const say = require('./hi')
+
+和 hi.js
+    module.exports =..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://paperp1ane.GitHub.io">
+  <img class="avatar" src="https://paperp1ane.GitHub.io/images/avatar.png?v=1616174118850" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              webpack-1-编译代码-common.js
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-20
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>1.创建webpack demo，具体步骤不阐述<br>
+2.在根目录建立src文件夹<br>
+我们创建了两个文件<br>
+index.js</p>
+<pre><code>    const say = require('./hi')
+</code></pre>
+<p>和 hi.js</p>
+<pre><code>    module.exports = function hi(value) {
+        alert('say'+ value)
+    }
+</code></pre>
+<p>3.执行编译命令。</p>
+<pre><code>node_modules/.bin/webpack --mode development
+</code></pre>
+<p>没有加入Babel，采用common.js规范<br>
+打开dist文件夹，打开编译后的文件</p>
+<pre><code>/*
+ * ATTENTION: The &quot;eval&quot; devtool has been used (maybe by default in mode: &quot;development&quot;).
+ * This devtool is neither made for production nor for readable output files.
+ * It uses &quot;eval()&quot; calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with &quot;devtool: false&quot;.
+ * If you are looking for production-ready output files, see mode: &quot;production&quot; (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() =&gt; { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ &quot;./src/hi.js&quot;:
+/*!*******************!*\
+  !*** ./src/hi.js ***!
+  \*******************/
+/***/ ((module) =&gt; {
+
+eval(&quot;module.exports = function hi(value) {\n    alert(value)\n}\n\n//# sourceURL=webpack://webpack-demo/./src/hi.js?&quot;);
+
+/***/ }),
+
+/***/ &quot;./src/index.js&quot;:
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) =&gt; {
+
+eval(&quot;const hi = __webpack_require__(/*! ./hi */ \&quot;./src/hi.js\&quot;)\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?&quot;);
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__(&quot;./src/index.js&quot;);
+/******/ 	
+/******/ })()
+;
+</code></pre>
+<p>可以看到整个代码并不长，精简一下如下</p>
+<pre><code>
+    (() =&gt; {
+        &lt;!-- 业务模块 --&gt;
+        __webpack_modules__ = {
+            [路径作为moduleID]: [处理后的脚本]  
+        )
+        &lt;!-- 缓存模块 --&gt;
+        __webpack_module_cache__ = {
+
+        }
+        &lt;!-- webpack require --&gt;
+        function __webpack_require__(moduleID) {
+
+        }
+        &lt;!-- 入口文件 --&gt;
+        var __webpack_exports__ = __webpack_require__(&quot;./src/index.js&quot;);
+    })()
+</code></pre>
+<p>1.可以看到，webpack重写了一个webpack_require方法去加载模块，实际上符合commonjs的规则。<br>
+2.通过入口文件indexjs去启动加载模块<br>
+3.在webpack_require方法中，会先判断当前路径[moduleID]模块是否已经在缓存中，如果有，直接返回缓存的结果。如果没有会创建一个新的module = { exports: {} }对象，同时将该对象放到webpack__module_cache中。下一步就是执行moduleID对应的function，这个function会有三个参数，如果业务代码中有commonjs的require,则webpack的__webpack_require__方法会作为参数传入对应的function中执行。最后返回模块的exports对象</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://paperp1ane.GitHub.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://paperp1ane.GitHub.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
