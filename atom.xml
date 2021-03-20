@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paperp1ane.GitHub.io</id>
     <title>Gridea</title>
-    <updated>2021-03-19T17:32:00.987Z</updated>
+    <updated>2021-03-20T06:28:22.600Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paperp1ane.GitHub.io"/>
     <link rel="self" href="https://paperp1ane.GitHub.io/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://paperp1ane.GitHub.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
     <entry>
-        <title type="html"><![CDATA[webpack-1-编译代码-common.js]]></title>
+        <title type="html"><![CDATA[webpack-1-编译代码]]></title>
         <id>https://paperp1ane.GitHub.io/post/webpack-1-bian-yi-dai-ma-commonjs/</id>
         <link href="https://paperp1ane.GitHub.io/post/webpack-1-bian-yi-dai-ma-commonjs/">
         </link>
@@ -121,6 +121,119 @@ eval(&quot;const hi = __webpack_require__(/*! ./hi */ \&quot;./src/hi.js\&quot;)
 <p>1.可以看到，webpack重写了一个webpack_require方法去加载模块，实际上符合commonjs的规则。<br>
 2.通过入口文件indexjs去启动加载模块<br>
 3.在webpack_require方法中，会先判断当前路径[moduleID]模块是否已经在缓存中，如果有，直接返回缓存的结果。如果没有会创建一个新的module = { exports: {} }对象，同时将该对象放到webpack__module_cache中。下一步就是执行moduleID对应的function，这个function会有三个参数，如果业务代码中有commonjs的require,则webpack的__webpack_require__方法会作为参数传入对应的function中执行。最后返回模块的exports对象</p>
+<h2 id="如果使用es-module呢">如果使用ES Module呢</h2>
+<p>我们加入babel编译，同时将两个js文件的写法改为ES Module规范，得到的结果实际上和上面差不多</p>
+<pre><code>/*
+ * ATTENTION: The &quot;eval&quot; devtool has been used (maybe by default in mode: &quot;development&quot;).
+ * This devtool is neither made for production nor for readable output files.
+ * It uses &quot;eval()&quot; calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with &quot;devtool: false&quot;.
+ * If you are looking for production-ready output files, see mode: &quot;production&quot; (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() =&gt; { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ &quot;./src/hi.js&quot;:
+/*!*******************!*\
+  !*** ./src/hi.js ***!
+  \*******************/
+/***/ (() =&gt; {
+
+eval(&quot;const hi = (value) =&gt; {\n    // \n}\n\n//# sourceURL=webpack://webpack-demo/./src/hi.js?&quot;);
+
+/***/ }),
+
+/***/ &quot;./src/index.js&quot;:
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) =&gt; {
+
+&quot;use strict&quot;;
+eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hi */ \&quot;./src/hi.js\&quot;);\n/* harmony import */ var _hi__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_hi__WEBPACK_IMPORTED_MODULE_0__);\n\nconsole.log(_hi__WEBPACK_IMPORTED_MODULE_0___default()('nihao'))\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?&quot;);
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() =&gt; {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) =&gt; {
+/******/ 			var getter = module &amp;&amp; module.__esModule ?
+/******/ 				() =&gt; (module['default']) :
+/******/ 				() =&gt; (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() =&gt; {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) =&gt; {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) &amp;&amp; !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() =&gt; {
+/******/ 		__webpack_require__.o = (obj, prop) =&gt; (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() =&gt; {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) =&gt; {
+/******/ 			if(typeof Symbol !== 'undefined' &amp;&amp; Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__(&quot;./src/index.js&quot;);
+/******/ 	
+/******/ })()
+;
+</code></pre>
+<p>查看编译后的文件<br>
+在声明webpack_require的作用域类，又增加了新的IIFE。</p>
 ]]></content>
     </entry>
     <entry>
