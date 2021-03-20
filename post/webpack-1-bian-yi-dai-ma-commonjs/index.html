@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>webpack-1-编译代码 | Gridea</title>
-<link rel="shortcut icon" href="https://paperp1ane.GitHub.io/favicon.ico?v=1616257862685">
+<link rel="shortcut icon" href="https://paperp1ane.GitHub.io/favicon.ico?v=1616261433118">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://paperp1ane.GitHub.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="webpack-1-编译代码 | Gridea - Atom Feed" href="https://paperp1ane.GitHub.io/atom.xml">
@@ -28,7 +28,7 @@ index.js
       <div class="main-content">
         <div class="site-header">
   <a href="https://paperp1ane.GitHub.io">
-  <img class="avatar" src="https://paperp1ane.GitHub.io/images/avatar.png?v=1616257862685" alt="">
+  <img class="avatar" src="https://paperp1ane.GitHub.io/images/avatar.png?v=1616261433118" alt="">
   </a>
   <h1 class="site-title">
     Gridea
@@ -211,15 +211,16 @@ eval(&quot;const hi = __webpack_require__(/*! ./hi */ \&quot;./src/hi.js\&quot;)
  * If you are looking for production-ready output files, see mode: &quot;production&quot; (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() =&gt; { // webpackBootstrap
+/******/ 	&quot;use strict&quot;;
 /******/ 	var __webpack_modules__ = ({
 
 /***/ &quot;./src/hi.js&quot;:
 /*!*******************!*\
   !*** ./src/hi.js ***!
   \*******************/
-/***/ (() =&gt; {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) =&gt; {
 
-eval(&quot;const hi = (value) =&gt; {\n    // \n}\n\n//# sourceURL=webpack://webpack-demo/./src/hi.js?&quot;);
+eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \&quot;hi\&quot;: () =&gt; (/* binding */ hi)\n/* harmony export */ });\nconst hi = (value) =&gt; {\n    // \n}\n\n\n\n//# sourceURL=webpack://webpack-demo/./src/hi.js?&quot;);
 
 /***/ }),
 
@@ -229,8 +230,7 @@ eval(&quot;const hi = (value) =&gt; {\n    // \n}\n\n//# sourceURL=webpack://web
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) =&gt; {
 
-&quot;use strict&quot;;
-eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hi */ \&quot;./src/hi.js\&quot;);\n/* harmony import */ var _hi__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_hi__WEBPACK_IMPORTED_MODULE_0__);\n\nconsole.log(_hi__WEBPACK_IMPORTED_MODULE_0___default()('nihao'))\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?&quot;);
+eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hi */ \&quot;./src/hi.js\&quot;);\n\nconsole.log((0,_hi__WEBPACK_IMPORTED_MODULE_0__.default)('nihao'))\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?&quot;);
 
 /***/ })
 
@@ -261,18 +261,6 @@ eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() =&gt; {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) =&gt; {
-/******/ 			var getter = module &amp;&amp; module.__esModule ?
-/******/ 				() =&gt; (module['default']) :
-/******/ 				() =&gt; (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() =&gt; {
 /******/ 		// define getter functions for harmony exports
@@ -312,7 +300,15 @@ eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var
 ;
 </code></pre>
 <p>查看编译后的文件<br>
-在声明webpack_require的作用域类，又增加了新的IIFE。</p>
+在声明webpack_require函数之后有扩展了新的函数。<br>
+1.<strong>webpack_require</strong>.r<br>
+如果symbol可用的话，回味当前module添加一个自定义类型标签，标记为Module<br>
+同时在module.exports上定义__esModule属性，表明为一个模块对象<br>
+2.<strong>webpack_require</strong>.o<br>
+hasOwnProperty的简写<br>
+3.<strong>webpack_require</strong>.d<br>
+为了和ES6的特性保持一致，将模块对应的function添加到module.exports对象上，<br>
+重写了getter 函数，没有设置属性setter函数。防止修改module.exports对应的function。</p>
 
               </div>
               <div class="toc-container">
